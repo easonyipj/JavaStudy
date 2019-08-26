@@ -58,5 +58,21 @@ public class MaxProfit {
         return sum;
     }
 
+    // 允许买入卖出K次
+    public static int maxProfitIV(int [] prices) {
+        int sum = 0;
+        if(prices.length <= 1) {
+            return 0;
+        }
+
+
+
+
+
+
+        return sum;
+    }
+
+
 
 }
