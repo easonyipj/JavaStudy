@@ -1,12 +1,13 @@
 import meituan.GraphTraverse;
 import meituan.MaxCompleteOneString;
 import sort.*;
+import string.SpliteString;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        GraphTraverse.main();
+        SpliteString.main();
 
     }
 
