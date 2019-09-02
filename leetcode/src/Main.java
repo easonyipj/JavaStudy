@@ -1,14 +1,14 @@
+import dp.LongestPalindromicSubstring;
 import meituan.GraphTraverse;
 import meituan.MaxCompleteOneString;
+import multithread.PrintInOrder;
 import sort.*;
 import string.SpliteString;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        SpliteString.main();
-
+        PrintInOrder.printBySyn();
     }
 
 
