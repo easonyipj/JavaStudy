@@ -47,6 +47,7 @@ public class WaitNotify {
             synchronized (lock) {
                 System.out.println(Thread.currentThread() + " hold lock " + FORMAT.format(new Date()));
                 flag = false;
+                // 调用notify后不是马上释放对象锁，而是在代码块语句执行完后释放对象锁
                 lock.notifyAll();
             }
 
