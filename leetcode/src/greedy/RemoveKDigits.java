@@ -1,5 +1,7 @@
 package greedy;
 
+import java.util.LinkedList;
+
 /**
  * Given a non-negative integer num represented as a string, remove k digits from the number
  * so that the new number is the smallest possible.
@@ -32,9 +34,35 @@ public class RemoveKDigits {
         if(k == num.length()) {
             return "0";
         }
+        LinkedList<Integer> list = new LinkedList<>();
 
+        for(int i = 0; i < num.length(); i++) {
+            int number = num.charAt(i) - '0';
 
+            while(!list.isEmpty() && k > 0 && list.getLast() > number) {
+                list.removeLast();
+                k--;
+            }
 
-        return null;
+            if(number != 0 || !list.isEmpty()) {
+                list.addLast(number);
+            }
+        }
+
+        while(!list.isEmpty() && k > 0) {
+            list.removeLast();
+            k--;
+        }
+
+        if(list.isEmpty()) {
+            return "0";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i : list) {
+            sb.append(String.valueOf(i));
+        }
+
+        return sb.toString();
     }
 }
