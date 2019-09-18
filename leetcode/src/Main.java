@@ -1,4 +1,5 @@
 import dp.LongestPalindromicSubstring;
+import greedy.MinimumNumberOfRefuelingStops;
 import meituan.GraphTraverse;
 import meituan.MaxCompleteOneString;
 import multithread.PrintFooBarAlternately;
@@ -17,7 +18,14 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        PrintFooBarAlternately.printByWaitNotify();
+        int target = 100;
+        int fuel = 50;
+        int[][] stations = new int[1][2];
+        stations[0][0] = 50;
+        stations[0][1] = 50;
+
+        int result = MinimumNumberOfRefuelingStops.minRefuelStops(target, fuel, stations);
+        System.out.println(result);
 
     }
 

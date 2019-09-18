@@ -1,5 +1,9 @@
 package greedy;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 /**
  * A car travels from a starting position to a destination which is target miles east of the starting position.
  * Along the way, there are gas stations.  Each station[i] represents a gas station
@@ -40,4 +44,51 @@ package greedy;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class MinimumNumberOfRefuelingStops {
+    public static int minRefuelStops(int target, int startFuel, int[][] stations) {
+        int count = 0;
+        if(stations.length == 0) {
+            return count;
+        }
+
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(stations.length, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2 - o1;
+            }
+        });
+
+        int remainFuel = startFuel;
+        int distance = stations[0][0];
+
+        if(remainFuel < distance) {
+            return -1;
+        }else {
+            remainFuel -= distance;
+        }
+
+        for(int i = 0; i < stations.length; i++) {
+            // 将当前加油站油量放入堆中
+            maxHeap.add(stations[i][1]);
+            if(i == stations.length - 1) {
+                distance = target - stations[i][0];
+            }else{
+                distance = stations[i + 1][0] - stations[i][0];
+            }
+
+            // 加油
+            while(!maxHeap.isEmpty() && remainFuel < distance) {
+                remainFuel += maxHeap.poll();
+                count++;
+            }
+
+            // 如果加完油还不够，则返回-1
+            if(remainFuel < distance) {
+                return  -1;
+            }
+
+            remainFuel -= distance;
+        }
+
+        return count;
+    }
 }
