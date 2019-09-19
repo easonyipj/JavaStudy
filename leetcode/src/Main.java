@@ -6,6 +6,7 @@ import multithread.PrintFooBarAlternately;
 import multithread.PrintInOrder;
 import multithread.Sychronized;
 import multithread.WaitNotify;
+import recursion.Subsets;
 import sort.*;
 import string.SpliteString;
 
@@ -18,14 +19,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        int target = 100;
-        int fuel = 50;
-        int[][] stations = new int[1][2];
-        stations[0][0] = 50;
-        stations[0][1] = 50;
-
-        int result = MinimumNumberOfRefuelingStops.minRefuelStops(target, fuel, stations);
-        System.out.println(result);
+        int[] nums = {1, 2, 3};
+        Subsets.subsetsByBits(nums);
 
     }
 
