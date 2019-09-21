@@ -38,34 +38,42 @@ import java.util.*;
 public class CombinationSumII {
     public List<List<Integer>> combinationSum2(int[] nums, int target) {
         List<List<Integer>> lists = new ArrayList<>();
-
+        List<Integer> list = new ArrayList<>();
         // 排序
         Arrays.sort(nums);
         // 使用set去重
         Set<List<Integer>> sets = new HashSet<>();
 
-        int set = 1 << nums.length;
-
-        for(int i = 0; i < set; i++) {
-            List<Integer> list = new ArrayList<>();
-            int count = 0;
-            for(int j = 0; j < nums.length; j++) {
-                // 1 << j指示nums的第i个数（from 1）
-                if((i & (1 << j)) > 0) {
-                    list.add(nums[j]);
-                    count += nums[j];
-                }
-                if(count >= target) {
-                    break;
-                }
-            }
-            if(count == target) {
-                sets.add(list);
-            }
-        }
+        dfs(0, 0, target, nums, sets, list);
 
         lists.addAll(sets);
-
         return lists;
     }
+
+    public void dfs(int deep, int sum, int target, int[] nums, Set<List<Integer>> sets, List<Integer> list) {
+        // 当sum > target时剪支操作
+        if(deep == nums.length || sum > target) {
+            return;
+        }
+
+        // 先递归加上
+        list.add(nums[deep]);
+        sum += nums[deep];
+
+        if(target == sum) {
+            List<Integer> temp = new ArrayList<>(Arrays.asList(new Integer[list.size()]));
+            Collections.copy(temp, list);
+            sets.add(temp);
+        }
+
+        // 继续向下
+        dfs(deep + 1, sum, target, nums, sets, list);
+
+        // 弹出最后一个元素，继续向下
+        list.remove(list.size() - 1);
+        sum -= nums[deep];
+        dfs(deep + 1, sum, target, nums, sets, list);
+    }
 }
+
+
