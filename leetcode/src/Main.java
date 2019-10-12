@@ -19,11 +19,11 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        int[] nums = {1, 2, 3};
-        Subsets.subsetsByBits(nums);
+        int[] nums = {4, 5, 3, 6, 2, 5, 1};
+        HeapSort.heapSort(nums);
+        printArray(nums);
 
     }
-
 
     private static void printArray(int [] nums) {
         for(int i : nums) {

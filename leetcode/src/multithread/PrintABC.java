@@ -15,7 +15,6 @@ public class PrintABC {
             this.self = self;
         }
 
-
         @Override
         public void run() {
             while(count > 0) {
@@ -49,6 +48,8 @@ public class PrintABC {
         printB.start();
         Thread.sleep(10);
         printC.start();
+
+
     }
 
 }
