@@ -1,14 +1,22 @@
-package amazon;
+package aiqiyi;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PhoneNumberGeneration {
 
+    /**
+     * print 100 lines
+     */
     private static final int COUNT = 100;
     private static int count;
 
-    public static void dfs(List<Integer> list, int deep) {
+    /**
+     * recursion method, use dfs
+     * @param list store numbers
+     * @param deep represent the digit of a phone number
+     */
+    private static void dfs(List<Integer> list, int deep) {
         if(count == COUNT) {
             return;
         }
@@ -18,6 +26,7 @@ public class PhoneNumberGeneration {
             count++;
             return;
         }
+
         if(deep != 1) {
             list.add(0);
             dfs(list, deep + 1);
@@ -61,20 +70,33 @@ public class PhoneNumberGeneration {
         list.remove(list.size() - 1);
     }
 
-    public static void main(String[] args) {
-//        List<Integer> list = new ArrayList<>();
-//        dfs(list, 1);
-        int c = 0;
-        for(long i = 1000000000; i < 9999999999l; i++) {
+    /**
+     * Loop method, from 1000000000 - 9999999999, every loop add 1
+     */
+    private void loop() {
+        int count = 0;
+        for(long i = 1000000000; i < 9999999999L; i++) {
             System.out.println(i);
-            c++;
-            if(c == 50) {
+            count++;
+            // print 100 lines
+            if(count == 100) {
                 break;
             }
         }
-
     }
 
+    public static void main(String[] args) {
+        // 1 use dfs
+        List<Integer> list = new ArrayList<>();
+        dfs(list, 1);
+
+        // use loop
+        // loop();
+    }
+
+    /**
+     * print the numbers
+     */
     private static void printNumbers(List<Integer> list) {
         for(int i : list) {
             System.out.print(i);

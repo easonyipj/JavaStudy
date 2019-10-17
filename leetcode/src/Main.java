@@ -19,9 +19,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        int[] nums = {4, 5, 3, 6, 2, 5, 1};
-        HeapSort.heapSort(nums);
-        printArray(nums);
+        scoreCalculate();
 
     }
 
@@ -43,6 +41,11 @@ public class Main {
         String s;
         while((s = br.readLine()) != null) {
             score = Double.parseDouble(s.split(" ")[0]);
+            if(score >= 85) {
+                score = 4;
+            }else {
+                score = 4 - ((85 - score) / 10);
+            }
             weight = Double.parseDouble(s.split(" ")[1]);
             scoreSum += score * weight;
             weightSum += weight;
