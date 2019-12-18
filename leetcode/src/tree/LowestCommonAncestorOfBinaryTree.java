@@ -37,6 +37,9 @@ import java.util.Stack;
  **/
 public class LowestCommonAncestorOfBinaryTree {
 
+    /**
+     * solution 1
+     */
     public static ArrayList<TreeNode> pList = new ArrayList<>();
     public static ArrayList<TreeNode> qList = new ArrayList<>();
     public static int flag = 0;
@@ -86,6 +89,10 @@ public class LowestCommonAncestorOfBinaryTree {
         s.remove(s.size() - 1);
     }
 
+
+    /**
+     * solution 2
+     */
     public TreeNode answer;
 
     public TreeNode lowestCommonAncestorByRecursion(TreeNode root, TreeNode p, TreeNode q) {
