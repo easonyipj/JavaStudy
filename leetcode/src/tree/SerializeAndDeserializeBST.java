@@ -18,7 +18,7 @@ package tree;
  */
 public class SerializeAndDeserializeBST {
 
-    class TreeNode {
+    static class TreeNode {
       int val;
       TreeNode left;
       TreeNode right;
@@ -48,13 +48,14 @@ public class SerializeAndDeserializeBST {
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
         String[] nodes = data.split("#");
-        TreeNode root = new TreeNode();
+        TreeNode root = null;
         if(!"".equals(nodes[0])) {
             root = new TreeNode(Integer.parseInt(nodes[0]));
         }
         for(int i = 1; i < nodes.length; i++) {
             if(!"".equals(nodes[i])) {
                 TreeNode node = new TreeNode(Integer.parseInt(nodes[i]));
+                assert root != null;
                 insert(root, node);
             }
         }
@@ -63,17 +64,35 @@ public class SerializeAndDeserializeBST {
 
     private void insert(TreeNode root, TreeNode node) {
         if(node.val < root.val) {
-            if(node.left != null) {
+            if(root.left != null) {
                 insert(root.left, node);
             }else {
                 root.left = node;
             }
         }else {
-            if(node.right != null) {
+            if(root.right != null) {
                 insert(root.right, node);
             }else {
                 root.right = node;
             }
         }
+    }
+
+    public static void main(String[] args) {
+
+        TreeNode node = new TreeNode(3);
+        TreeNode node1 = new TreeNode(1);
+        TreeNode node2 = new TreeNode(4);
+        TreeNode node3 = new TreeNode(2);
+
+        node.left = node1;
+        node.right = node2;
+        node1.right = node3;
+
+        String text = new SerializeAndDeserializeBST().serialize(node);
+        System.out.println(text);
+
+        new SerializeAndDeserializeBST().deserialize(text);
+
     }
 }
