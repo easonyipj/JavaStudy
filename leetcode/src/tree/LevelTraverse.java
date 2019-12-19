@@ -8,15 +8,14 @@ import java.util.concurrent.LinkedBlockingQueue;
  **/
 public class LevelTraverse {
 
-    public static void dfs(TreeNode root, int depth, int targetDepth) {
-        if(depth == targetDepth)  {
-            if(root != null) {
-                System.out.println(root.val);
-            }
-            return;
+    /**
+     * traverseByDFS
+     */
+    public static void traverseByDFS(TreeNode root) {
+        int depth = getDepth(root);
+        for(int i = 1; i <= depth; i++) {
+            dfs(root, 1, i);
         }
-        dfs(root.left, depth + 1, targetDepth);
-        dfs(root.right, depth + 1, targetDepth);
     }
 
     public static int getDepth(TreeNode root) {
@@ -30,15 +29,22 @@ public class LevelTraverse {
         return Math.max(leftDepth, rightDepth);
     }
 
-    public static void traverseByDFS(TreeNode root) {
-        int depth = getDepth(root);
-        for(int i = 1; i <= depth; i++) {
-            dfs(root, 1, i);
+    public static void dfs(TreeNode root, int depth, int targetDepth) {
+        if(depth == targetDepth)  {
+            if(root != null) {
+                System.out.println(root.val);
+            }
+            return;
         }
+        dfs(root.left, depth + 1, targetDepth);
+        dfs(root.right, depth + 1, targetDepth);
     }
 
+    /**
+     * traverseByQueue
+     */
     public static void traverseByQueue(TreeNode root) {
-        LinkedBlockingQueue<TreeNode> queue = new LinkedBlockingQueue<TreeNode>();
+        LinkedBlockingQueue<TreeNode> queue = new LinkedBlockingQueue<>();
         TreeNode node = root;
         queue.offer(node);
         while(!queue.isEmpty()) {
