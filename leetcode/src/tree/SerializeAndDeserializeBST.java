@@ -24,9 +24,6 @@ public class SerializeAndDeserializeBST {
       TreeNode right;
       TreeNode(int x) { val = x; }
 
-        public TreeNode() {
-
-        }
     }
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
@@ -40,7 +37,7 @@ public class SerializeAndDeserializeBST {
             return;
         }
 
-        sb.append(String.valueOf(node.val)).append("#");
+        sb.append(node.val).append("#");
         dfs(node.left, sb);
         dfs(node.right, sb);
     }
@@ -92,7 +89,6 @@ public class SerializeAndDeserializeBST {
         String text = new SerializeAndDeserializeBST().serialize(node);
         System.out.println(text);
 
-        new SerializeAndDeserializeBST().deserialize(text);
 
     }
 }
