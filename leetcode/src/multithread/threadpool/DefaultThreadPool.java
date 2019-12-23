@@ -1,4 +1,4 @@
-package multithread;
+package multithread.threadpool;
 
 import java.util.ArrayList;
 import java.util.Collections;

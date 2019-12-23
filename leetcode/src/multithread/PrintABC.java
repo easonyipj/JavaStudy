@@ -49,7 +49,6 @@ public class PrintABC {
         Thread.sleep(10);
         printC.start();
 
-
     }
 
 }

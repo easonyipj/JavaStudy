@@ -1,4 +1,4 @@
-package multithread;
+package multithread.threadpool.dbconnpool;
 
 import java.sql.Connection;
 import java.util.LinkedList;

@@ -1,11 +1,11 @@
-package multithread;
+package multithread.threadpool.httppool;
 
-import com.sun.deploy.net.HttpRequest;
+import multithread.threadpool.DefaultThreadPool;
+import multithread.threadpool.ThreadPool;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.text.SimpleDateFormat;
 
 public class SimpleHttpServer {
     // 处理HttpRequest的线程池

@@ -1,4 +1,4 @@
-package multithread;
+package multithread.threadpool;
 
 public interface ThreadPool<Job extends Runnable> {
     // 执行Job，这个Job需要实现Runnable
