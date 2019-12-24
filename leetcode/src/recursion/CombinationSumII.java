@@ -37,7 +37,6 @@ import java.util.*;
  */
 public class CombinationSumII {
     public List<List<Integer>> combinationSum2(int[] nums, int target) {
-        List<List<Integer>> lists = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
         // 排序
         Arrays.sort(nums);
@@ -46,8 +45,7 @@ public class CombinationSumII {
 
         dfs(0, 0, target, nums, sets, list);
 
-        lists.addAll(sets);
-        return lists;
+        return new ArrayList<>(sets);
     }
 
     public void dfs(int deep, int sum, int target, int[] nums, Set<List<Integer>> sets, List<Integer> list) {
