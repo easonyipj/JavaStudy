@@ -37,4 +37,9 @@ public class LongestIncreasingSubsequence {
 
         return max;
     }
+
+    /**TODO
+     * use a stack
+     */
+
 }

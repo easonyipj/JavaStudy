@@ -3,6 +3,7 @@ package tree;
 /**
  * Eason
  * 2019/10/16
+ * TODO
  * Given a binary tree, flatten it to a linked list in-place.
  *
  * For example, given the following tree:
