@@ -102,7 +102,6 @@ public class LRUCache {
             node = new Node();
             node.key = key;
             node.value = value;
-            size++;
         }else {
             node.value = value;
             remove(node);
@@ -117,6 +116,7 @@ public class LRUCache {
         node.next = next;
         node.pre = head;
         head.next = node;
+        size++;
     }
 
     private void moveToHead(Node node) {
