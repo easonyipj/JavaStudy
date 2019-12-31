@@ -1,5 +1,8 @@
 package graph;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * There are a total of n courses you have to take, labeled from 0 to n-1.
  *
@@ -30,8 +33,40 @@ package graph;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class CourseSchedule {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
 
+        // 生成入度表
+        int[] indgree = new int[numCourses];
+        for(int i = 0; i < prerequisites.length; i++) {
+            indgree[prerequisites[i][0]]++;
+        }
 
+        LinkedList<Integer> list = new LinkedList<>();
+        for(int i = 0; i < indgree.length; i++) {
+            if(indgree[i] == 0) {
+                list.addFirst(i);
+            }
+        }
 
+        while (!list.isEmpty()) {
+            int node = list.pollFirst();
+            numCourses--;
+            for(int i = 0; i < prerequisites.length; i++) {
+                if(prerequisites[i][1] == node) {
+                    indgree[prerequisites[i][0]]--;
+                    if(indgree[prerequisites[i][0]] == 0) {
+                        list.addFirst(prerequisites[i][0]);
+                    }
+                }
+            }
+        }
+
+        return numCourses == 0;
+
+    }
+
+    /**
+     * dfs TODO:https://leetcode-cn.com/problems/course-schedule/solution/course-schedule-tuo-bu-pai-xu-bfsdfsliang-chong-fa/
+     */
 
 }
