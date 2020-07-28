@@ -1,4 +1,4 @@
-package aiqiyi;
+package iqiyi;
 
 import java.util.Scanner;
 

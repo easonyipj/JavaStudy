@@ -1,4 +1,4 @@
-package aiqiyi;
+package iqiyi;
 
 import org.jetbrains.annotations.NotNull;
 
