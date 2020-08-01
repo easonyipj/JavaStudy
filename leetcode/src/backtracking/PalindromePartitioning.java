@@ -50,6 +50,20 @@ public class PalindromePartitioning {
         return res;
     }
 
+    // 解法2 回溯
+    public void backtracking(List<List<String>> res, List<String> temp, String s, int start, boolean[][]dp) {
+        if(start == s.length()) {
+            res.add(new ArrayList<>(temp));
+        }
+
+        for(int i = start; i < s.length(); i++) {
+            if(dp[start][i]) {
+                temp.add(s.substring(start, i + 1));
+                backtracking(res, temp, s, i + 1, dp);
+                temp.remove(temp.size() - 1);
+            }
+        }
+    }
 
     public boolean isPalindrome(String s) {
         int left = 0;
@@ -62,6 +76,23 @@ public class PalindromePartitioning {
             right--;
         }
         return true;
+    }
+
+    /**
+     * 改进：动态规划判断是否回文串
+     * 将s[i][j]是否是字串的结果记在二维数组中
+     * @param s
+     * @return
+     */
+    public boolean[][] isPalindromeByDp(String s) {
+        boolean[][] dp = new boolean[s.length()][s.length()];
+        for(int len = 1; len <= s.length(); len++) {
+            for(int i = 0; i <= s.length() - len; i++) {
+                int j = i + len - 1;
+                dp[i][j] = s.charAt(i) == s.charAt(j) && (len < 3 || dp[i + 1][j - 1]);
+            }
+        }
+        return dp;
     }
 
 }

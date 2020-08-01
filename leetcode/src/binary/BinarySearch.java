@@ -1,4 +1,4 @@
-package search;
+package binary;
 
 public class BinarySearch {
 
