@@ -29,31 +29,35 @@ package binary;
 public class SearchInsertPosition {
 
     public int searchInsert(int[] nums, int target) {
-        int index = -1;
+        if(target <= nums[0]) {
+            return 0;
+        }
+
+        if(target == nums[nums.length - 1]) {
+            return nums.length - 1;
+        }
+
+        if(target > nums[nums.length - 1]) {
+            return nums.length;
+        }
+
         int left = 0;
         int right = nums.length - 1;
-        while (left <= right) {
-            int mid = (left + right) / 2;
-            if(target == nums[mid]) {
-                index = mid;
-                break;
-            }
-            if(target < nums[mid]) {
-                if(mid == 0 || target > nums[mid - 1]) {
-                    index = mid;
-                    break;
-                }
-                right = mid - 1;
-            }
-            if(target > nums[mid]) {
-                if(mid == nums.length - 1 || target < nums[mid + 1]) {
-                    index = mid + 1;
-                    break;
-                }
-                left = mid + 1;
+        int mid;
+        while(left + 1 < right) {
+            mid = left + (right - left) / 2;
+            if(nums[mid] > target) {
+                right = mid;
+            }else{
+                left = mid;
             }
         }
-        return index;
+
+        if(nums[left] >= target) {
+            return left;
+        }
+
+        return right;
     }
 }
 

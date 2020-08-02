@@ -10,11 +10,10 @@ package binary;
  * You may assume no duplicate exists in the array.
  *
  * Example 1:
- *
  * Input: [3,4,5,1,2]
  * Output: 1
- * Example 2:
  *
+ * Example 2:
  * Input: [4,5,6,7,0,1,2]
  * Output: 0
  *
@@ -26,7 +25,17 @@ public class FindMinimumInRotatedSortedArray {
     public int findMin(int[] nums) {
         int left = 0;
         int right = nums.length - 1;
+        int mid;
 
-        return 0;
+        while(left + 1 < right) {
+            mid = left + (right - left) / 2;
+            if(nums[mid] > nums[right]) {
+                left = mid;
+            }else {
+                right = mid;
+            }
+        }
+
+        return Math.min(nums[left], nums[right]);
     }
 }
