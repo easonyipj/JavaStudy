@@ -26,55 +26,48 @@ package binary;
  */
 public class SearchInRotatedSortedArray {
 
+    /**
+     * 依次判断mid两侧是否为升序且元素是否在其中
+     */
     public int search(int[] nums, int target) {
+        if(nums.length == 0) {
+            return -1;
+        }
+
         int left = 0;
         int right = nums.length - 1;
+        int mid;
 
-        while(left <= right) {
-            int mid = (left + right) / 2;
+        while(left + 1 < right) {
+            mid = left + (right - left) / 2;
             if(nums[mid] == target) {
                 return mid;
             }
 
-            if(target < nums[mid]) {
-                if(nums[left] == nums[mid]) {
-                    left = mid + 1;
-                    continue;
+            // 查看左区间是否为升序
+            if(nums[left] < nums[mid]) {
+                // 查看元素是否在左区间
+                if(nums[left] <= target && target <= nums[mid]) {
+                    right = mid;
+                }else {
+                    left = mid;
                 }
-
-                if(nums[left] < nums[mid]) {
-                    if(nums[left] <= target) {
-                        right = mid - 1;
-                    }else {
-                        left = mid + 1;
-                    }
-                    continue;
-                }
-
-                if(nums[left] > nums[mid]) {
-                    right = mid - 1;
+            }else {
+                // 查看元素是否在右区间
+                if(nums[mid + 1] <= target && target <= nums[right]) {
+                    left = mid;
+                }else {
+                    right = mid;
                 }
             }
+        }
 
-            if(target > nums[mid]) {
-                if(nums[left] == nums[mid]) {
-                    left = mid + 1;
-                    continue;
-                }
+        if(nums[left] == target) {
+            return left;
+        }
 
-                if(nums[left] < nums[mid]) {
-                    left = mid + 1;
-                    continue;
-                }
-
-                if(nums[left] > nums[mid]) {
-                    if(nums[right] >= target) {
-                        left = mid + 1;
-                    }else {
-                        right = mid - 1;
-                    }
-                }
-            }
+        if(nums[right] == target) {
+            return right;
         }
 
         return -1;
