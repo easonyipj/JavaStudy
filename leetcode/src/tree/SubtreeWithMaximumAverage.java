@@ -48,7 +48,7 @@ public class SubtreeWithMaximumAverage {
         return resultNode;
     }
 
-    private class ResultType {
+    private static class ResultType {
         public int sum;
         public int size;
         public ResultType(int sum, int size) {

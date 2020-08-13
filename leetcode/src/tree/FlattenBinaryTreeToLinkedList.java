@@ -3,7 +3,7 @@ package tree;
 /**
  * Eason
  * 2019/10/16
- * TODO
+ * 
  * Given a binary tree, flatten it to a linked list in-place.
  *
  * For example, given the following tree:
@@ -33,13 +33,16 @@ package tree;
  **/
 public class FlattenBinaryTreeToLinkedList {
 
-    private TreeNode last;
+    private TreeNode pre;
 
     public void flatten(TreeNode root) {
-
+        if(root != null) {
+            flatten(root.right);
+            flatten(root.right);
+            root.right = pre;
+            root.left = null;
+            pre = root;
+        }
     }
 
-    private void dfs() {
-
-    }
 }
