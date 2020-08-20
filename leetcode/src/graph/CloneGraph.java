@@ -1,9 +1,6 @@
 package graph;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Given a reference of a node in a connected undirected graph.
@@ -64,6 +61,30 @@ public class CloneGraph {
         }
 
         return cloneNode;
+    }
+
+    // bfs
+    public Node cloneGraphBFS(Node node) {
+        if(node == null) {
+            return null;
+        }
+
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(node);
+        nodeMap.put(node, new Node(node.val, new ArrayList()));
+
+        while(!queue.isEmpty()) {
+            Node temp = queue.poll();
+            for(Node adjNode : temp.neighbors) {
+                if(!nodeMap.containsKey(adjNode)) {
+                    queue.offer(adjNode);
+                    nodeMap.put(adjNode, new Node(adjNode.val, new ArrayList()));
+                }
+                nodeMap.get(temp).neighbors.add(nodeMap.get(adjNode));
+            }
+        }
+
+        return nodeMap.get(node);
     }
 
     public static void main(String[] args) {
