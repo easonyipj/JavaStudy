@@ -1,5 +1,8 @@
 package backtracking;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Eason
  * 2019/12/22
@@ -67,5 +70,51 @@ public class NumberOfIslands {
         dfs(grid, x + 1, y);
         dfs(grid, x, y - 1);
         dfs(grid, x, y + 1);
+    }
+
+    public int numsOfIslandsByBFS(char[][] grid) {
+        if(grid == null || grid.length == 0 || grid[0] == null || grid[0].length == 0) {
+            return 0;
+        }
+
+        int result = 0;
+        int m = grid.length;
+        int n = grid[0].length;
+        Queue<Integer> queue = new LinkedList<>();
+
+        int x;
+        int y;
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if(grid[i][j] == '1') {
+                    result++;
+                    queue.offer(i * n + j);
+                    grid[i][j] = '0';
+                    while(!queue.isEmpty()) {
+                        int index = queue.poll();
+                        x = index / n;
+                        y = index % n;
+                        if(x - 1 >= 0 && grid[x - 1][y] == '1') {
+                            queue.offer((x - 1) * n + y);
+                            grid[x - 1][y] = '0';
+                        }
+                        if(x + 1 < m && grid[x + 1][y] == '1') {
+                            queue.offer((x + 1) * n + y);
+                            grid[x + 1][y] = '0';
+                        }
+                        if(y - 1 >= 0 && grid[x][y - 1] == '1') {
+                            queue.offer(x * n + (y - 1));
+                            grid[x][y - 1] = '0';
+                        }
+                        if(y + 1 < n && grid[x][y + 1] == '1') {
+                            queue.offer(x * n + (y + 1));
+                            grid[x][y + 1] = '0';
+                        }
+                    }
+                }
+            }
+        }
+
+        return result;
     }
 }
